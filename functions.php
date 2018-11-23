@@ -386,4 +386,37 @@ function tech_literacy_output_content_wrapper_end () {
 add_action( 'wp_head', 'tech_literacy_remove_wc_breadcrumbs' );
 function tech_literacy_remove_wc_breadcrumbs() {
    	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
-}  
+}
+
+// **************************
+// Login
+// **************************
+function session_management() {
+    do_action('session_management');
+}
+
+
+function session_controls($items='') {
+
+    if ( is_user_logged_in() ) {
+
+        global $current_user;
+
+        $args = array(
+            'class' => 'img-responsive img-circle',
+        );
+
+        $items .= '<li>'.get_avatar( $current_user->ID, 52, '', '', $args).'</li>';
+        $items .= '<li></li>';
+        $items .= '<li><a href="#">'.$current_user->display_name.'</a></li>';
+        $items .= '<li><a href="' . wp_logout_url() . '">Log Out</a></li>';
+    }else {
+        $items .= '<li><a href="' . wp_login_url() . '">' .'Login In'. '</a></li>';
+        $items .= '<li><a href="' . wp_registration_url() . '">' .'Sign Up'. '</a></li>';
+    }
+
+    echo $items;
+}
+
+add_filter('session_management','session_controls', 10);
+

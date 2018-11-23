@@ -341,10 +341,10 @@ if(isset($_GET['id'])){
 					  	<a data-size="large" class="twitter popup" href="http://twitter.com/share"><img class="twpopup" src="<?php echo get_template_directory_uri().'/images/tweet.png' ?>"></a>	
 				  </div>
 				</center>
-				  <hr>
+                <hr class="hr_section_tool">
 			<?php 
-	    		td_show_comments($id);
-	    		echo td_form_comments($id)
+	    		//td_show_comments($id);
+	    		echo td_form_comments($id, $results['info_tool']->Name)
 	    	?>
 			</div>
 	    </div><!-- #primary -->
