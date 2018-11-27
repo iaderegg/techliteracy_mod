@@ -200,11 +200,12 @@ textarea{
 .ui-pnotify.custom .ui-pnotify-container {
     background-color: rgb(213, 27, 35) !important;
     background-image: none !important;
-    border: none !important;
+    border-width: 1px !important;
+    border-color: white !important;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 .ui-pnotify.custom .ui-pnotify-title, .ui-pnotify.custom .ui-pnotify-text {
     font-size: 10pt !important;

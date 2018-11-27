@@ -1,37 +1,38 @@
 <?php
-    /**
-     * Template Name: manage_comments_suggestions
-     *
-     */
+/**
+ * Template Name: manage_comments_suggestions_site
+ *
+ */
 
-    // Se añaden estilos
-    wp_enqueue_style( 'style',get_template_directory_uri().'/css/td_manage_comments_suggestions.css',false,'1.1','all');
+// Se añaden estilos
+wp_enqueue_style( 'td_manage_comments_suggestions.css',get_template_directory_uri().'/css/td_manage_comments_suggestions.css',false,'1.1','all');
+//wp_enqueue_style( 'datatables.min.css',get_template_directory_uri().'/js/tools_dintev/datatables/datatables.min.css');
+wp_enqueue_style( 'datatables.bootstrap.css',get_template_directory_uri().'/js/tools_dintev/datatables/DataTables-1.10.18/css/dataTables.foundation.css');
+wp_enqueue_style( 'datatables.bootstrap.css',get_template_directory_uri().'/js/tools_dintev/datatables/DataTables-1.10.18/css/dataTables.jquery.css');
+wp_enqueue_style('style.css', get_template_directory_uri().'/css/style.css');
+wp_enqueue_style('pnotify.custom.min.css', get_template_directory_uri().'/css/pnotify.custom.min.css');
 
-    get_header();
+get_header();
 
 ?>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<div class="wrapper">
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <div class="container">
-
-        </div>
-        <hr>
-        <ul class="sidebar-nav">
-            <?php
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <?php
                 if ( is_user_logged_in() ) {
 
                     global $current_user;
 
                     $args = array(
-                    'class' => 'img-responsive img-circle',
+                        'class' => 'img-responsive img-circle',
                     );
 
                     $items .= '<li>';
@@ -41,7 +42,7 @@
                     $items .= '</div>';
 
                     echo $items;
-            ?>
+                    ?>
                     <hr class="col-sm-12">
                     <li>
                         <a href="#">
@@ -56,32 +57,76 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo get_home_url() ?>/manage_comments_suggestions_tools">
                             <span class="fa fa-comment"></span>
                             Comentarios por herramienta</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href= "<?php echo get_home_url() ?>/site_comments">
                             <span class="fa fa-comments"></span>
                             Comentarios del sitio
                         </a>
                     </li>
-            <?php
+                    <?php
                 }else {
-                    $items .= '<li><a href="' . wp_login_url() . '">' .'Login In'. '</a></li>';
-                    $items .= '<li><a href="' . wp_registration_url() . '">' .'Sign Up'. '</a></li>';
+                    $items .= '<li><a href="' . wp_login_url() . '">' .'Acceder'. '</a></li>';
+                    $items .= '<li><a href="' . wp_registration_url() . '">' .'Cerrar sesión'. '</a></li>';
                     echo $items;
                 }
-            ?>
+                ?>
 
-        </ul>
-    </div>
-    <!-- /#sidebar-wrapper -->
-</div><!-- .wrap -->
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
 
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3>Comentarios y sugerencias del sitio</h3>
+                        <hr>
+                        <div class="col-sm-12">
+                            <div class="col-sm-1">
+                                <h4>Filtrar</h4>
+                            </div>
+                            <div class="col-sm-4">
+                                <select name="select_filter_status" id="select_filter_status">
+                                    <option value="all_suggestions">Todos</option>
+                                    <option value="0">No revisados</option>
+                                    <option value="1">Revisados</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <hr>
+                        </div>
+                        <hr>
+                        <div class="col-sm-12" id="div_table_suggestions">
+                            <table id="suggestions_tools_table" class="display" style="width:100%">
+                                <thead>
+                                <tr>
 
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- .wrapper -->
 
 <?php
-    //wp_enqueue_style( 'jquery.dataTables.min.css', '/wp-content/plugins/icami2017/includes/lib/DataTables/media/css/jquery.dataTables.min.css');
-    get_footer();
+
+wp_enqueue_script( 'jquery.datatables.min.js', get_template_directory_uri().'/js/tools_dintev/datatables/DataTables-1.10.18/js/jquery.dataTables.js');
+wp_enqueue_script( 'datatables.min.js', get_template_directory_uri().'/js/tools_dintev/datatables/datatables.min.js');
+wp_enqueue_script( 'manage_suggestions_site.js', get_template_directory_uri().'/js/tools_dintev/manage_suggestions_site.js');
+wp_enqueue_script( 'pnotify.custom.min.js', get_template_directory_uri().'/js/pnotify.custom.min.js');
+get_footer();
+
+
 ?>

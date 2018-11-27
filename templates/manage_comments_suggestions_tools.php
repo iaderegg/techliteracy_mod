@@ -5,8 +5,12 @@
      */
 
     // Se añaden estilos
-    wp_enqueue_style( 'style',get_template_directory_uri().'/css/td_manage_comments_suggestions.css',false,'1.1','all');
-    wp_enqueue_style( 'datatables.min.css',get_template_directory_uri().'/js/tools_dintev/datatables/datatables.min.css');
+    wp_enqueue_style( 'td_manage_comments_suggestions.css',get_template_directory_uri().'/css/td_manage_comments_suggestions.css',false,'1.1','all');
+    //wp_enqueue_style( 'datatables.min.css',get_template_directory_uri().'/js/tools_dintev/datatables/datatables.min.css');
+    wp_enqueue_style( 'datatables.bootstrap.css',get_template_directory_uri().'/js/tools_dintev/datatables/DataTables-1.10.18/css/dataTables.foundation.css');
+    wp_enqueue_style( 'datatables.bootstrap.css',get_template_directory_uri().'/js/tools_dintev/datatables/DataTables-1.10.18/css/dataTables.jquery.css');
+    wp_enqueue_style('style.css', get_template_directory_uri().'/css/style.css');
+    wp_enqueue_style('pnotify.custom.min.css', get_template_directory_uri().'/css/pnotify.custom.min.css');
 
     get_header();
 
@@ -53,20 +57,20 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo get_home_url() ?>/manage_comments_suggestions_tools">
                             <span class="fa fa-comment"></span>
                             Comentarios por herramienta</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href= "<?php echo get_home_url() ?>/site_comments">
                             <span class="fa fa-comments"></span>
                             Comentarios del sitio
                         </a>
                     </li>
             <?php
                 }else {
-                    $items .= '<li><a href="' . wp_login_url() . '">' .'Login In'. '</a></li>';
-                    $items .= '<li><a href="' . wp_registration_url() . '">' .'Sign Up'. '</a></li>';
+                    $items .= '<li><a href="' . wp_login_url() . '">' .'Acceder'. '</a></li>';
+                    $items .= '<li><a href="' . wp_registration_url() . '">' .'Cerrar sesión'. '</a></li>';
                     echo $items;
                 }
             ?>
@@ -81,25 +85,41 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h3>Comentarios por herramienta</h3>
+                    <hr>
                     <div class="col-sm-12">
-                        <table id="comments_tools_table">
+                        <div class="col-sm-1">
+                            <h4>Filtrar</h4>
+                        </div>
+                        <div class="col-sm-4">
+                            <select name="select_filter_status" id="select_filter_status">
+                                <option value="all_comments">Todos</option>
+                                <option value="0">No revisados</option>
+                                <option value="1">Aprobados</option>
+                                <option value="2">No aprobados</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                    <hr>
+                    <div class="col-sm-12" id="div_table_comments">
+                        <table id="comments_tools_table" class="display" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    <th>Id</th>
                                     <th>Comentario</th>
                                     <th>Nombre</th>
                                     <th>Correo electrónico</th>
                                     <th>Herramienta</th>
                                     <th>Fecha</th>
+                                    <th>Aprobado</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <?php
-                                $comments = td_get_comments_by_tool();
-                                print_r($comments);
-                                foreach($comments as $comment){
-
-                                }
+                                $html_to_return = td_get_comments_by_tool_html();
+                                echo $html_to_return;
                             ?>
                             </tbody>
                         </table>
@@ -108,10 +128,15 @@
             </div>
         </div>
     </div>
-</div><!-- .wrap -->
+</div><!-- .wrapper -->
 
 <?php
-    wp_enqueue_script( 'manage_comments_suggestions_tools.js', get_template_directory_uri().'/js/tools_dintev/manage_comments_suggestions_tools.js');
+
+    wp_enqueue_script( 'jquery.datatables.min.js', get_template_directory_uri().'/js/tools_dintev/datatables/DataTables-1.10.18/js/jquery.dataTables.js');
     wp_enqueue_script( 'datatables.min.js', get_template_directory_uri().'/js/tools_dintev/datatables/datatables.min.js');
+    wp_enqueue_script( 'manage_comments_suggestions_tools.js', get_template_directory_uri().'/js/tools_dintev/manage_comments_suggestions_tools.js');
+    wp_enqueue_script( 'pnotify.custom.min.js', get_template_directory_uri().'/js/pnotify.custom.min.js');
     get_footer();
+
+
 ?>

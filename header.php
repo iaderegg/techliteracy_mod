@@ -83,7 +83,7 @@ if ( is_singular() && pings_open() ) { ?>
 				$current_link = home_url($wp->request);
 
 				if($home != $current_link){
-					?><a href="<?php the_permalink(); ?>" class="text-menu-dintev first">Página Principal</a><?php
+					?><a href="<?php echo get_home_url() ?>" class="text-menu-dintev first">Página Principal</a><?php
 				}
 				?>
 				<a href="http://dintev.univalle.edu.co/" target="blank" class="text-menu-dintev">DINTEV</a>
