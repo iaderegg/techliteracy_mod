@@ -45,15 +45,15 @@ get_header();
                     ?>
                     <hr class="col-sm-12">
                     <li>
-                        <a href="#">
+                        <a href="<?php echo get_home_url() ?>/manage_tool_categories">
                             <span class="fa fa-object-group"></span>
-                            Nueva categoria
+                            Categorías
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo get_home_url() ?>/manage_tools">
                             <span class="fa fa-wrench"></span>
-                            Nueva herramienta
+                            Herramientas
                         </a>
                     </li>
                     <li>
@@ -122,11 +122,10 @@ get_header();
 
 <?php
 
-wp_enqueue_script( 'jquery.datatables.min.js', get_template_directory_uri().'/js/tools_dintev/datatables/DataTables-1.10.18/js/jquery.dataTables.js');
-wp_enqueue_script( 'datatables.min.js', get_template_directory_uri().'/js/tools_dintev/datatables/datatables.min.js');
-wp_enqueue_script( 'manage_suggestions_site.js', get_template_directory_uri().'/js/tools_dintev/manage_suggestions_site.js');
-wp_enqueue_script( 'pnotify.custom.min.js', get_template_directory_uri().'/js/pnotify.custom.min.js');
-get_footer();
-
+    wp_enqueue_script( 'jquery.datatables.min.js', get_template_directory_uri().'/js/tools_dintev/datatables/DataTables-1.10.18/js/jquery.dataTables.js');
+    wp_enqueue_script( 'datatables.min.js', get_template_directory_uri().'/js/tools_dintev/datatables/datatables.min.js');
+    wp_enqueue_script( 'manage_suggestions_site.js', get_template_directory_uri().'/js/tools_dintev/manage_suggestions_site.js');
+    wp_enqueue_script( 'pnotify.custom.min.js', get_template_directory_uri().'/js/pnotify.custom.min.js');
+    get_footer();
 
 ?>

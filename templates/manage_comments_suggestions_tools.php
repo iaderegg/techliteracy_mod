@@ -45,15 +45,15 @@
             ?>
                     <hr class="col-sm-12">
                     <li>
-                        <a href="#">
+                        <a href="<?php echo get_home_url() ?>/manage_tool_categories">
                             <span class="fa fa-object-group"></span>
-                            Nueva categoria
+                            Categorías
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo get_home_url() ?>/manage_tools">
                             <span class="fa fa-wrench"></span>
-                            Nueva herramienta
+                            Herramientas
                         </a>
                     </li>
                     <li>
