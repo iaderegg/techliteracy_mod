@@ -1,19 +1,22 @@
 <?php
-/**
- * Template Name: manage_tools
- *
- */
+    /**
+     * Template Name: manage_tools
+     *
+     */
 
-// Se añaden estilos
-wp_enqueue_style( 'td_manage_comments_suggestions.css',get_template_directory_uri().'/css/td_manage_comments_suggestions.css',false,'1.1','all');
-//wp_enqueue_style( 'datatables.min.css',get_template_directory_uri().'/js/tools_dintev/datatables/datatables.min.css');
-wp_enqueue_style( 'datatables.bootstrap.css',get_template_directory_uri().'/js/tools_dintev/datatables/DataTables-1.10.18/css/dataTables.foundation.css');
-wp_enqueue_style( 'datatables.bootstrap.css',get_template_directory_uri().'/js/tools_dintev/datatables/DataTables-1.10.18/css/dataTables.jquery.css');
-wp_enqueue_style('style.css', get_template_directory_uri().'/css/style.css');
-wp_enqueue_style('pnotify.custom.min.css', get_template_directory_uri().'/css/pnotify.custom.min.css');
+    if ( !is_user_logged_in() ) {
+        auth_redirect();
+    }
 
-get_header();
+    // Se añaden estilos
+    wp_enqueue_style( 'td_manage_comments_suggestions.css',get_template_directory_uri().'/css/td_manage_comments_suggestions.css',false,'1.1','all');
+    //wp_enqueue_style( 'datatables.min.css',get_template_directory_uri().'/js/tools_dintev/datatables/datatables.min.css');
+    wp_enqueue_style( 'datatables.bootstrap.css',get_template_directory_uri().'/js/tools_dintev/datatables/DataTables-1.10.18/css/dataTables.foundation.css');
+    wp_enqueue_style( 'datatables.bootstrap.css',get_template_directory_uri().'/js/tools_dintev/datatables/DataTables-1.10.18/css/dataTables.jquery.css');
+    wp_enqueue_style('style.css', get_template_directory_uri().'/css/style.css');
+    wp_enqueue_style('pnotify.custom.min.css', get_template_directory_uri().'/css/pnotify.custom.min.css');
 
+    get_header();
 ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -70,6 +73,9 @@ get_header();
             }else {
                 $items .= '<li><a href="' . wp_login_url() . '">' .'Acceder'. '</a></li>';
                 $items .= '<li><a href="' . wp_registration_url() . '">' .'Cerrar sesión'. '</a></li>';
+
+
+
                 echo $items;
             }
             ?>

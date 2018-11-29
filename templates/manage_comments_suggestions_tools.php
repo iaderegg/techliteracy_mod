@@ -4,6 +4,10 @@
      *
      */
 
+    if ( !is_user_logged_in() ) {
+        auth_redirect();
+    }
+
     // Se añaden estilos
     wp_enqueue_style( 'td_manage_comments_suggestions.css',get_template_directory_uri().'/css/td_manage_comments_suggestions.css',false,'1.1','all');
     //wp_enqueue_style( 'datatables.min.css',get_template_directory_uri().'/js/tools_dintev/datatables/datatables.min.css');
